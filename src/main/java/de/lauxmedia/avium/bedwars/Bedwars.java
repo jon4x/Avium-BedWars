@@ -1,11 +1,8 @@
 package de.lauxmedia.avium.bedwars;
 
-import org.bukkit.command.CommandExecutor;
 import de.lauxmedia.avium.bedwars.commands.BedWarsCommand;
 import java.util.Objects;
 import de.lauxmedia.avium.bedwars.listener.QuitListener;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.event.Listener;
 import de.lauxmedia.avium.bedwars.listener.JoinListener;
 import de.lauxmedia.avium.bedwars.util.Locations;
 import org.bukkit.plugin.PluginManager;
