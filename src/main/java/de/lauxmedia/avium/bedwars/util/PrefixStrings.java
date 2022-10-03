@@ -13,4 +13,8 @@ public class PrefixStrings {
     public static String getInfoPrefix() {
         return "§7[§e!§7] §8» §7";
     }
+
+    public static String getPositivePrefix() {
+        return "§7[§a!§7] §8» §7";
+    }
 }

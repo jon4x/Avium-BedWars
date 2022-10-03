@@ -1,11 +1,11 @@
-name: Bedwars
+name: BedWars
 version: '${project.version}'
 main: de.lauxmedia.avium.bedwars.Bedwars
 api-version: 1.16
 prefix: BedWars
 load: STARTUP
 authors: [ jonax ]
-description: BedWars plugin for a server network.
+description: A BedWars plugin for server networks.
 website: lauxmedia.de
 
 commands:

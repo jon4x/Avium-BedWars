@@ -17,8 +17,10 @@ public class JoinListener implements Listener
 {
     @EventHandler
     public void onJoin(final PlayerJoinEvent event) {
-        final Player player = event.getPlayer();
-        event.setJoinMessage(PrefixStrings.getBedwarsPrefix() + player.getName() + " §7has joined the game.");
+        Player player = event.getPlayer();
+        int onlinePlayers = Bedwars.getInstance().getServer().getOnlinePlayers().size();
+        int maxPlayers = Bedwars.getInstance().getServer().getMaxPlayers();
+        event.setJoinMessage(PrefixStrings.getPositivePrefix() + "§a" + player.getName() + " joined the game. §8(§7" + onlinePlayers + "§8/§7" + maxPlayers + "§8)");
         if (player.hasPermission("bedwars.setup")) {
             player.sendMessage(PrefixStrings.getWarningPrefix() + "§7Please use: §c/bedwars setup");
         }

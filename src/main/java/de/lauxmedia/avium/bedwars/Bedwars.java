@@ -16,16 +16,23 @@ public final class Bedwars extends JavaPlugin
     private static PluginManager pluginManager;
 
     public void onEnable() {
-        Bedwars.instance = this;
-        Bedwars.gameState = GameState.LOBBY;
-        Bedwars.pluginManager = this.getServer().getPluginManager();
-        this.registerListener();
-        this.registerCommands();
-        this.loadConfigs();
+        instance = this;
+        gameState = GameState.LOBBY;
+        pluginManager = getServer().getPluginManager();
+        registerListener();
+        registerCommands();
+        loadConfigs();
         Locations.getLocationsFromConfig();
+        setSlots();
     }
 
     public void onDisable() {
+    }
+
+    public void setSlots() {
+        int teams = (int) getConfig().get("config.teams");
+        int player = (int) getConfig().get("config.player");
+        getServer().setMaxPlayers(teams * player);
     }
 
     private void loadConfigs() {

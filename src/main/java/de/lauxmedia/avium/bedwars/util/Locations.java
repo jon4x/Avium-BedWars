@@ -38,7 +38,7 @@ public class Locations
         return Locations.lobbySpawn;
     }
 
-    public static void setLobbySpawn(final Location lobbySpawn) {
+    public static void setLobbySpawn(Location lobbySpawn) {
         Locations.lobbySpawn = lobbySpawn;
     }
 

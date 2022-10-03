@@ -1,3 +1,6 @@
 settings:
   dev: false
   setup: false
+config:
+  teams: 4
+  player: 2
