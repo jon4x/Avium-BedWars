@@ -40,6 +40,7 @@ public class JoinListener implements Listener
         }
         if (Bedwars.getInstance().getGameState() == GameState.LOBBY && Locations.getLobbySpawn() != null) {
             player.teleport(Locations.getLobbySpawn());
+            player.setBedSpawnLocation(Locations.getLobbySpawn());
         }
         player.setHealth(20.0);
         player.setHealthScale(2.0);

@@ -39,6 +39,7 @@ public final class Bedwars extends JavaPlugin
         pluginManager = getServer().getPluginManager();
         registerListener();
         registerCommands();
+        registerTabCopmleter();
         loadConfigs();
         Locations.getLocationsFromConfig();
         setSlots();
@@ -64,7 +65,11 @@ public final class Bedwars extends JavaPlugin
     }
 
     private void registerCommands() {
-        Objects.requireNonNull(this.getCommand("bedwars")).setExecutor(new BedWarsCommand());
+        Objects.requireNonNull(getCommand("bedwars")).setExecutor(new BedWarsCommand());
+    }
+
+    private void registerTabCopmleter() {
+        Objects.requireNonNull(getCommand("bedwars")).setTabCompleter(new BedWarsCommand());
     }
 
     public static Bedwars getInstance() {

@@ -31,6 +31,9 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.command.CommandExecutor;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class BedWarsCommand implements CommandExecutor, TabCompleter
@@ -120,6 +123,44 @@ public class BedWarsCommand implements CommandExecutor, TabCompleter
 
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
-        return null;
+        List<String> completions = new ArrayList<>();
+
+        if (sender.hasPermission("bedwars.setup")) {
+            if (args.length == 1) {
+                completions.add("setup");
+                completions.add("setlobby");
+                completions.add("setconfig");
+                completions.add("createmap");
+                completions.add("setspawn");
+                completions.add("setspawner");
+                completions.add("enablemap");
+                completions.add("finish");
+            }
+            if (args.length == 2) {
+                if (args[0].equalsIgnoreCase("setconfig")) {
+                    for (int i = 2; i <= 8; i++) {
+                        completions.add(String.valueOf(i));
+                    }
+                }
+            }
+            if (args.length == 3) {
+                if (args[0].equalsIgnoreCase("setconfig")) {
+                    for (int i = 1; i <= 4; i++) {
+                        completions.add(String.valueOf(i));
+                    }
+                }
+                if (args[0].equalsIgnoreCase("setspawn")) {
+                    completions.add("red");
+                    completions.add("green");
+                    completions.add("blue");
+                    completions.add("yellow");
+                    completions.add("purple");
+                    completions.add("pink");
+                }
+            }
+        }
+        Collections.sort(completions);
+
+        return completions;
     }
 }

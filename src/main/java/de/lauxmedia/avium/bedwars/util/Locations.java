@@ -61,7 +61,7 @@ public class Locations
     }
 
     static {
-        configuration = (Configuration)Bedwars.getInstance().getConfig();
-        teamSpawns = new HashMap<String, Location>();
+        configuration = Bedwars.getInstance().getConfig();
+        teamSpawns = new HashMap<>();
     }
 }
