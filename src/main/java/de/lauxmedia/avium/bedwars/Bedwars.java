@@ -2,6 +2,7 @@ package de.lauxmedia.avium.bedwars;
 
 import de.lauxmedia.avium.bedwars.commands.BedWarsCommand;
 import de.lauxmedia.avium.bedwars.gamestate.GameState;
+import de.lauxmedia.avium.bedwars.listener.JoinListener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -24,6 +25,8 @@ public final class Bedwars extends JavaPlugin {
         pluginManager = getServer().getPluginManager();
         // registerListener
         registerListener();
+        // register Commands
+        registerCommands();
     }
 
     @Override
@@ -32,7 +35,7 @@ public final class Bedwars extends JavaPlugin {
     }
 
     private void registerListener() {
-
+        pluginManager.registerEvents(new JoinListener(), getInstance());
     }
 
     private void registerCommands() {
