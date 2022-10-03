@@ -2,19 +2,15 @@ package de.lauxmedia.avium.bedwars.util;
 
 public class PrefixStrings {
 
-    private static String infoPrefix = "§7[§e!§7] §8» ";
-    private static String warningPrefix = "§7[§c!§7] §8» ";
-    private static String bedwarsPrefix = "§cBedWars §8» ";
-
     public static String getBedwarsPrefix() {
-        return bedwarsPrefix;
+        return "§cBedWars §8» §7";
     }
 
     public static String getWarningPrefix() {
-        return warningPrefix;
+        return "§7[§c!§7] §8» §7";
     }
 
     public static String getInfoPrefix() {
-        return infoPrefix;
+        return "§7[§e!§7] §8» §7";
     }
 }

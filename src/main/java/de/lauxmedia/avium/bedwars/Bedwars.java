@@ -1,60 +1,63 @@
 package de.lauxmedia.avium.bedwars;
 
+import org.bukkit.command.CommandExecutor;
 import de.lauxmedia.avium.bedwars.commands.BedWarsCommand;
-import de.lauxmedia.avium.bedwars.gamestate.GameState;
+import java.util.Objects;
+import de.lauxmedia.avium.bedwars.listener.QuitListener;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.event.Listener;
 import de.lauxmedia.avium.bedwars.listener.JoinListener;
+import de.lauxmedia.avium.bedwars.util.Locations;
 import org.bukkit.plugin.PluginManager;
+import de.lauxmedia.avium.bedwars.gamestate.GameState;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.Objects;
-
-public final class Bedwars extends JavaPlugin {
-
+public final class Bedwars extends JavaPlugin
+{
     private static Bedwars instance;
+    private static GameState gameState;
+    private static PluginManager pluginManager;
 
-    private GameState gameState;
-    private PluginManager pluginManager;
-
-    @Override
     public void onEnable() {
-        // set instance
-        instance = this;
-        // set gameState
-        gameState = GameState.LOBBY;
-        // set pluginManager
-        pluginManager = getServer().getPluginManager();
-        // registerListener
-        registerListener();
-        // register Commands
-        registerCommands();
+        Bedwars.instance = this;
+        Bedwars.gameState = GameState.LOBBY;
+        Bedwars.pluginManager = this.getServer().getPluginManager();
+        this.registerListener();
+        this.registerCommands();
+        this.loadConfigs();
+        Locations.getLocationsFromConfig();
     }
 
-    @Override
     public void onDisable() {
-        // Plugin shutdown logic
+    }
+
+    private void loadConfigs() {
+        this.getConfig().options().copyDefaults(true);
+        this.saveConfig();
     }
 
     private void registerListener() {
-        pluginManager.registerEvents(new JoinListener(), getInstance());
+        Bedwars.pluginManager.registerEvents(new JoinListener(), getInstance());
+        Bedwars.pluginManager.registerEvents(new QuitListener(), getInstance());
     }
 
     private void registerCommands() {
-        Objects.requireNonNull(getCommand("bedwars")).setExecutor(new BedWarsCommand());
+        Objects.requireNonNull(this.getCommand("bedwars")).setExecutor(new BedWarsCommand());
     }
 
-    public Bedwars getInstance() {
-        return instance;
+    public static Bedwars getInstance() {
+        return Bedwars.instance;
     }
 
     public GameState getGameState() {
-        return gameState;
+        return Bedwars.gameState;
     }
 
-    public void setGameState(GameState gameState) {
-        this.gameState = gameState;
+    public static void setGameState(final GameState gameState) {
+        Bedwars.gameState = gameState;
     }
 
-    public PluginManager getPluginManager() {
-        return pluginManager;
+    public static PluginManager getPluginManager() {
+        return Bedwars.pluginManager;
     }
 }
