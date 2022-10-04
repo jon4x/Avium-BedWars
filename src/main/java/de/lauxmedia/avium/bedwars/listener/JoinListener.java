@@ -30,20 +30,20 @@ import org.bukkit.event.Listener;
 public class JoinListener implements Listener
 {
     @EventHandler
-    public void onJoin(final PlayerJoinEvent event) {
+    public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         int onlinePlayers = Bedwars.getInstance().getServer().getOnlinePlayers().size();
         int maxPlayers = Bedwars.getInstance().getServer().getMaxPlayers();
         event.setJoinMessage(PrefixStrings.getPositivePrefix() + "§a" + player.getName() + " joined the game. §8(§7" + onlinePlayers + "§8/§7" + maxPlayers + "§8)");
         if (player.hasPermission("bedwars.setup")) {
-            player.sendMessage(PrefixStrings.getWarningPrefix() + "§7Please use: §c/bedwars setup");
+            player.sendMessage(PrefixStrings.getWarningPrefix() + "§7Please use §c/bedwars setup §7for setup instructions.");
         }
         if (Bedwars.getInstance().getGameState() == GameState.LOBBY && Locations.getLobbySpawn() != null) {
             player.teleport(Locations.getLobbySpawn());
-            player.setBedSpawnLocation(Locations.getLobbySpawn());
         }
         player.setHealth(20.0);
         player.setHealthScale(2.0);
         player.setFoodLevel(20);
     }
+
 }
